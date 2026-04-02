@@ -24,6 +24,7 @@ $(MATRIXX_TARGET_PACKAGE): $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) mv -f $(INTERNAL_OTA_PACKAGE_TARGET) $(MATRIXX_TARGET_PACKAGE)
 	$(hide) $(SHA256) $(MATRIXX_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(MATRIXX_TARGET_PACKAGE).sha256sum
 	$(hide) rm -rf $(call intermediates-dir-for,PACKAGING,target_files)
+	$(hide) ./vendor/matrixx/build/tools/createjson.sh $(TARGET_DEVICE) $(PRODUCT_OUT) $(LINEAGE_VERSION).zip
 	$(hide) ./vendor/matrixx/build/tasks/ascii_output.sh
 	echo -e "\n${CL_BLD}${CL_GRN}================================================================================${CL_RST}" >&2
 	echo -e "${CL_BLD}${CL_CYN}                🎊✨ BUILD COMPLETED SUCCESSFULLY! ✨🎊${CL_RST}" >&2
